@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealership Review</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'djangoapp/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+
+</head>
+
+    <body>
+    <!--Add a nav bar here -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="about">Dealership Review</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                    <a class="btn btn-link" href="{ % url 'onlinecourse:logout' % }">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <form class="form-inline" action="{ % url 'djangoapp:login.html' % }" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Username" name="username" >
+                            <input type="password" class="form-control" placeholder="Password" name="psw" >
+                            <button class="btn btn-primary" type="submit">Login</button>
+                            <a class="btn btn-link" href="{ % url 'djangoapp:registration.html' % }">Sign Up</a>
+                        </div>
+                    </form>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <p>Welcome to the world car dealership site. Add these to the url: add_review, contact, dealer_details to view more options.</p>
+    <button class="btn btn-primary" type="submit" onclick="document.location='dealer_details'">View Dealer details</button>
+    <!-- Dealer table here -->
+    <table class="table" id="table" data-filter-control="true">
+        <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="dealer_name">Dealer Name</th>
+                <th data-field="city">City</th>
+                <th data-field="address">Address</th>
+                <th data-field="zip">Zip</th>
+                <th data-field="state" data-filter-control="select">State</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Holdamis Dealership</td>
+                <td>El Paso</td>
+                <td>3 Nova Court</td>
+                <td>88563</td>
+                <td>TX</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Temp Car Dealership</td>
+                <td>Minneapolis</td>
+                <td>6337 Butternut Crossing</td>
+                <td>55402</td>
+                <td>MN</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Sub-Ex Car Dealership</td>
+                <td>Birmingham</td>
+                <td>9477 Twin Pines Carter</td>
+                <td>35285</td>
+                <td>AL</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Solarbreeze Car Dealership</td>
+                <td>Dallas</td>
+                <td>85800 Hazelcrest Circle</td>
+                <td>75241</td>
+                <td>TX</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Regrant Car Dealership</td>
+                <td>Baltimore</td>
+                <td>93 Golf Course Pass</td>
+                <td>21203</td>
+                <td>MD</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Stronghold Car Dealership</td>
+                <td>Wikes Barre</td>
+                <td>2 Burrows Hill</td>
+                <td>18763</td>
+                <td>PA</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Job Car Dealership</td>
+                <td>Pueblo</td>
+                <td>9 Cambridge Park</td>
+                <td>81010</td>
+                <td>CO</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Bytecarfd Car Dealership</td>
+                <td>Topeka</td>
+                <td>288 Larry Place</td>
+                <td>66642</td>
+                <td>KS</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Job Car Dealership </td>
+                <td>Dallas</td>
+                <td>253 Hanson Junction</td>
+                <td>75216</td>
+                <td>TX</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Alphazap Car Dealership</td>
+                <td>Washington</td>
+                <td>100 Memorial Pass</td>
+                <td>20005</td>
+                <td>DC</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dealer in dealership_list %}
+            <tr>
+                <td>{{dealer.id}}</td>
+                <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.full_name}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </body>
+    <script>
+        $(function() {
+            $('#tabel').bootstrapTable()
+        })
+      </script>
+</html>
