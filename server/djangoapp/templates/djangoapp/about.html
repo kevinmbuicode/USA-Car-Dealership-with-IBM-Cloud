@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'djangoapp/style.css' %}">
+</head>
+    <body>
+        <div class="about_container">
+            <h1 class="header">ABOUT</h1>
+            <img class="about_bg" src="{% static 'djangoapp/ford-wallpaper.jpg' %}" alt="Ford wallpaper">
+            <p class="introduction">
+                Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
+            </p>
+            <footer>
+                <p>Copyright © The CapStone Project 2021</p>
+            </footer>
+        </div>
+    </body>
+</html>
