@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealer details</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'djangoapp/style.css' %}">
+</head>
+
+    <body>
+
+    <!--Nav bar -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="about">Dealer details</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link" href="add_review.html">Visit Add_review page</a>
+                </li>
+                {% else %}
+                <li>
+                    <form class="form-inline" action="{ # % url 'onlinecourse:login' % #}" method="post">
+                        {% csrf_token %}
+                    </form>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!-- Reviews cards -->
+    <div class="container">
+        <div class="reviews" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'djangoapp/ford-wallpaper.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">Sub-Ex Car Dealearship</h5>
+            <p class="card-text">I didn't like the service i was given by one of their members</p>
+            <a href="add_review" class="btn btn-primary">Add review too</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'djangoapp/ford-wallpaper.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">Holdamis Dealership</h5>
+            <p class="card-text">The offers were quite amazing, would recommend this to anyone</p>
+            <a href="add_review" class="btn btn-primary">Add review too</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'djangoapp/ford-wallpaper.jpg' %}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">Alphazap Car Dealership</h5>
+            <p class="card-text">Not the typical store you find cheap cars at, it requires alpha money</p>
+            <a href="add_review" class="btn btn-primary">Add review too</a>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
