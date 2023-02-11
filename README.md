@@ -1,5 +1,5 @@
-# Final Project Template IBM
-
+# Final IBM Project - Lite Account
+- The Lite account may need payment by the time you see this, but use this code. Note: It was approved by the time I submitted this. Now on to IBM text: 
 The final project for this course has several steps that you must complete. 
 To give you an overview of the whole project, all the high-level steps are listed below. 
 The project is then divided into several smaller labs. 
